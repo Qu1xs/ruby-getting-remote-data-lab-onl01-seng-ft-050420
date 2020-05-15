@@ -16,19 +16,10 @@ class GetRequester
   end
   
   def parse_json
-    
+    programs = JSON.parse(self.get_response_body)
+    programs.collect do |program|
+      program["agency"]
+    end
   end
   
 end 
-
-class GetPrograms
- 
-  URL = "http://data.cityofnewyork.us/resource/uvks-tn5n.json"
- 
-  def get_programs
-    uri = URI.parse(URL)
-    response = Net::HTTP.get_response(uri)
-    response.body
-  end
- 
-end
